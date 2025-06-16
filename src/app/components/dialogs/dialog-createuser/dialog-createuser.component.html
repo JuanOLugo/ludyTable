@@ -1,0 +1,268 @@
+<p-dialog
+  header="Create user"
+  [modal]="true"
+  [(visible)]="visible"
+  [closeButtonProps]="{ ariaLabel: 'Close dialog', severity: 'danger' }"
+  [style]="{ width: '25rem' }"
+  (onHide)="setClose()"
+>
+  <form class="" (submit)="createUser($event)">
+    <div class="my-3">
+      <h1
+        class="font-bold mb-1 text-neutral-900 hover:text-neutral-700 transition-all cursor-default"
+      >
+        User Information
+      </h1>
+      <div class="grid grid-cols-1 gap-3">
+        <div>
+          <p-floatlabel style="margin-top: 20px" class="">
+            <input
+              maxlength="25"
+              required
+              class="w-[346px]"
+              id="in_label"
+              pInputText
+              [value]="globalDialogService.user().name"
+              (input)="dialogServiceComponent.onChangeUser($event)"
+              name="name"
+              [pSize]="'small'"
+              minlength="3"
+            />
+            <label for="in_label">Name</label>
+          </p-floatlabel>
+          <small class="text-red-500 font-light">{{globalDialogService.ErrorManager.name}}</small>
+        </div>
+        <div>
+          <p-floatlabel style="margin-top: 20px" class="">
+            <input
+              class="w-[346px]"
+              required
+              id="in_label"
+              pInputText
+              [value]="globalDialogService.user().username"
+              (input)="dialogServiceComponent.onChangeUser($event)"
+              name="username"
+              [pSize]="'small'"
+              minlength="3"
+            />
+            <label for="in_label">Username</label>
+          </p-floatlabel>
+          <small class="text-red-500 font-light">{{globalDialogService.ErrorManager.username}}</small>
+        </div>
+      </div>
+    </div>
+    <div class="my-3">
+      <h1
+        class="font-bold mb-1 text-neutral-900 hover:text-neutral-700 transition-all cursor-default"
+      >
+        Digital info
+      </h1>
+      <div class="grid grid-cols-1 gap-3">
+        <div>
+          <p-floatlabel style="margin-top: 20px" class="">
+            <input
+              class="w-[346px]"
+              required
+              id="in_label"
+              pInputText
+              [value]="globalDialogService.user().email"
+              (input)="dialogServiceComponent.onChangeUser($event)"
+              name="email"
+              [pSize]="'small'"
+              minlength="3"
+            />
+            <label for="in_label">Email </label>
+          </p-floatlabel>
+          <small class="text-red-500 font-light">{{globalDialogService.ErrorManager.email}}</small>
+        </div>
+        <div>
+          <p-floatlabel style="margin-top: 20px" class="">
+            <input
+              class="w-[346px]"
+              required
+              id="in_label"
+              pInputText
+              [value]="globalDialogService.user().phone"
+              (input)="dialogServiceComponent.onChangeUser($event)"
+              name="phone"
+              [pSize]="'small'"
+              minlength="10"
+              maxlength="10"
+            />
+            <label for="in_label">Phone number</label>
+          </p-floatlabel>
+          <small class="text-red-500 font-light">{{globalDialogService.ErrorManager.phone}}</small>
+        </div>
+      </div>
+    </div>
+    <div class="my-3">
+      <h1
+        class="font-bold mb-1 text-neutral-900 hover:text-neutral-700 transition-all cursor-default"
+      >
+        Web site
+      </h1>
+      <div class="grid grid-cols-2 gap-3">
+        <p-floatlabel style="margin-top: 20px">
+          <input
+            class="w-[346px]"
+            required
+            id="in_label"
+            pInputText
+            [value]="globalDialogService.user().website"
+            (input)="dialogServiceComponent.onChangeUser($event)"
+            name="website"
+            [pSize]="'small'"
+            minlength="3"
+          />
+          <label for="in_label">Website</label>
+        </p-floatlabel>
+        <small class="text-red-500 font-light">{{globalDialogService.ErrorManager.website}}</small>
+      </div>
+    </div>
+
+    <div>
+      <h1
+        class="font-bold mb-1 text-neutral-900 hover:text-neutral-700 transition-all cursor-default"
+      >
+        Address
+      </h1>
+      <div class="grid grid-cols-2 gap-1">
+        <div>
+          <p-floatlabel style="margin-top: 20px">
+            <input
+              required
+              id="in_label"
+              pInputText
+              [value]="globalDialogService.user().address.city"
+              (input)="
+                dialogServiceComponent.onChangeSpecific($event, 'address')
+              "
+              name="city"
+              [pSize]="'small'"
+              class="w-full"
+              minlength="3"
+            />
+            <label for="in_label">city</label>
+          </p-floatlabel>
+          <small class="text-red-500 font-light">{{globalDialogService.ErrorManager.city}}</small>
+        </div>
+        <div>
+          <p-floatlabel style="margin-top: 20px">
+            <input
+            required
+              id="in_label"
+              pInputText
+              [value]="globalDialogService.user().address.street"
+              (input)="
+                dialogServiceComponent.onChangeSpecific($event, 'address')
+              "
+              name="street"
+              [pSize]="'small'"
+              class="w-full"
+              minlength="3"
+            />
+            <label for="in_label">street</label>
+          </p-floatlabel>
+          <small class="text-red-500 font-light">{{globalDialogService.ErrorManager.street}}</small>
+        </div>
+        <div>
+          <p-floatlabel style="margin-top: 20px">
+            <input
+              required
+              id="in_label"
+              pInputText
+              [value]="globalDialogService.user().address.suite"
+              (input)="
+                dialogServiceComponent.onChangeSpecific($event, 'address')
+              "
+              name="suite"
+              [pSize]="'small'"
+              class="w-full"
+              minlength="3"
+            />
+            <label for="in_label">suite</label>
+          </p-floatlabel>
+          <small class="text-red-500 font-light">{{globalDialogService.ErrorManager.suite}}</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="my-3">
+      <h1
+        class="font-bold mb-1 text-neutral-900 hover:text-neutral-700 transition-all cursor-default"
+      >
+        Company
+      </h1>
+      <div class="grid grid-cols-2 gap-1">
+        <div>
+          <p-floatlabel style="margin-top: 20px">
+            <input
+              required
+              id="in_label"
+              pInputText
+              [value]="globalDialogService.user().company.name"
+              (input)="
+                dialogServiceComponent.onChangeSpecific($event, 'company')
+              "
+              name="name"
+              [pSize]="'small'"
+              class="w-full"
+              minlength="3"
+            />
+            <label for="in_label">Company Name</label>
+          </p-floatlabel>
+          <small class="text-red-500 font-light">{{globalDialogService.ErrorManager.Companyname}}</small>
+        </div>
+        <div>
+          <p-floatlabel style="margin-top: 20px">
+            <input
+              required
+              id="in_label"
+              pInputText
+              [value]="globalDialogService.user().company.catchPhrase"
+              (input)="
+                dialogServiceComponent.onChangeSpecific($event, 'company')
+              "
+              name="catchPhrase"
+              [pSize]="'small'"
+              class="w-full"
+              minlength="3"
+            />
+            <label for="in_label">Catch Phrase</label>
+          </p-floatlabel>
+          <small class="text-red-500 font-light">{{globalDialogService.ErrorManager.catchPhrase}}</small>
+        </div>
+        <div>
+          <p-floatlabel style="margin-top: 20px">
+            <input
+              required
+              minlength="3"
+              id="in_label"
+              pInputText
+              [value]="globalDialogService.user().company.bs"
+              (input)="
+                dialogServiceComponent.onChangeSpecific($event, 'company')
+              "
+              name="bs"
+              [pSize]="'small'"
+              class="w-full"
+            />
+            <label for="in_label">Slogan</label>
+          </p-floatlabel>
+          <small class="text-red-500 font-light">{{globalDialogService.ErrorManager.slogan}}</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="mb-2">
+      <h1 class="text-red-500 font-light">{{globalDialogService.dialogErrorMessage}}</h1>
+    </div>
+
+    <div class="flex gap-2">
+      <p-button label="Create" type="submit" severity="info" />
+      <p-button label="Close" severity="danger" (onClick)="setClose()" />
+    </div>
+
+    
+  </form>
+</p-dialog>

@@ -1,0 +1,16 @@
+<div class="bg-blue-500 w-full h-screen lg:w-72 ">
+    <div class="w-full h-[95px] p-4 " >
+        <p-button class="float-end " (click)="onChangeNavbarState() ; $event.stopPropagation()" severity="info" ><i class="pi pi-times " style="font-size: 22px"></i></p-button>
+    </div>
+
+    <div class=" w-full ">
+        <div class="w-full mx-3 ">
+            <div class="flex flex-col gap-2">
+                @for(items of navbarContentService.NavbarItems; track items.minus ){
+                    <p-button severity="secondary" (click)="onEmmitDialogOption(items.minus); $event.stopPropagation()" >{{items.itemName}}</p-button>
+                }
+                <p-button severity="warn" routerLink="/">Go back</p-button>
+            </div>
+        </div>
+    </div>
+</div>

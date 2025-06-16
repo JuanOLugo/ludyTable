@@ -1,0 +1,37 @@
+@if(dialogStateService.InfoAddress().action){
+@if(dialogStateService.InfoAddress().user ===
+tableComponentService.userSelect()){
+<div class="">
+  <app-dialog-info
+    [InfoUserAddress]="dialogStateService.InfoAddress().InfoAddress ?? null"
+    [visible]="dialogStateService.InfoAddress().action"
+    (changeVisibleEmmiter)="
+      tableComponentService.ChangeDialogInfo(
+        'address',
+        tableComponentService.userSelect()
+      )
+    "
+  />
+</div>
+} } @if(dialogStateService.InfoCompany().action){
+  
+@if(dialogStateService.InfoCompany().user ===
+tableComponentService.userSelect()){
+<app-dialog-info
+  [InfoUserCompany]="dialogStateService.InfoCompany().InfoCompany ?? null"
+  [visible]="dialogStateService.InfoCompany().action"
+  (changeVisibleEmmiter)="
+    tableComponentService.ChangeDialogInfo(
+      'company',
+      tableComponentService.userSelect()
+    )
+  "
+/>
+} } @if(this.tableComponentService.userToEdit() > -1){
+@if(this.tableComponentService.userToEdit() ===
+dialogStateService.EditUser().user){
+<app-dialog-edituser
+  [userId]="this.tableComponentService.userToEdit()"
+  (closeDialogEmmiter)="this.tableComponentService.closeDialogEdit()"
+/>
+} }

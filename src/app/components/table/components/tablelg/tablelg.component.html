@@ -1,0 +1,108 @@
+<div class="scale-[0.75]  md:scale-[1] table-wrapper">
+  <p-table
+    [value]="this.tableComponentService.usersTable"
+    [responsiveLayout]="'scroll'"
+    [scrollable]="true"
+    paginator="true"
+    [rows]="5"
+    scrollHeight="flex"
+  >
+    <ng-template #header>
+      <tr>
+        <th>Code</th>
+        <th (click)="this.tableComponentService.sortChange()">
+          Name {{ this.tableComponentService.SortNames ? "*" : "" }}
+        </th>
+        <th>Username</th>
+        <th>Website</th>
+        <th>Phone Number</th>
+        <th>Address</th>
+        <th>Company</th>
+        <th>Actions</th>
+      </tr>
+    </ng-template>
+    <ng-template #body let-users>
+      <tr>
+        <td>{{ users.id }}</td>
+        <td>{{ users.name }}</td>
+        <td>{{ users.username }}</td>
+        <td>
+          <a
+            [href]="'http://' + users.website"
+            target="_blank"
+            class="hover:text-blue-600 hover:border-b"
+            >{{ users.website }}</a
+          >
+        </td>
+        <td>{{ users.phone.split(" ")[0] }}</td>
+        <td
+          class="cursor-pointer hover:bg-blue-500 rounded-sm hover:text-white transition-all"
+          (click)="tableComponentService.ChangeDialogInfo('address', users.id)"
+        >
+          <i class="pi pi-info-circle"></i>
+          <label class="cursor-pointer"> {{ users.address.city }}</label>
+        </td>
+        <td
+          class="cursor-pointer hover:bg-blue-500 rounded-sm hover:text-white transition-all"
+          (click)="tableComponentService.ChangeDialogInfo('company', users.id)"
+        >
+          <i class="pi pi-info-circle"></i>
+          <label class="cursor-pointer"> {{ users.company.name }}</label>
+        </td>
+        <td>
+          <div class="flex gap-2 text-xs">
+            <i
+              class="pi pi-pencil text-indigo-500 cursor-pointer hover:bg-indigo-500 p-2 rounded-sm hover:text-white transition-all"
+              (click)="
+                this.tableComponentService.changeEditUserDialog(users.id)
+              "
+            ></i>
+
+            <div>
+              <p-button
+                label="Delete"
+                (click)="tableComponentService.onDeleteUser(users.id, $event)"
+                severity="danger"
+                [outlined]="true"
+                ><i class="pi pi-trash"></i
+              ></p-button>
+
+              <p-confirmpopup #cp>
+                <ng-template #headless let-message>
+                  <div class="rounded p-4">
+                    <span>{{ message.message }}</span>
+                    <div class="flex items-center gap-2 mt-4">
+                      <p-button
+                        (onClick)="cp.onAccept()"
+                        label="Delete"
+                        size="small"
+                        severity="danger"
+                      />
+                      <p-button
+                        (onClick)="cp.onReject()"
+                        label="Cancel"
+                        [text]="true"
+                        size="small"
+                        severity="secondary"
+                      />
+                    </div>
+                  </div>
+                </ng-template>
+              </p-confirmpopup>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage">
+      <tr>
+        <td colspan="100%" class="text-center">
+          <div class="flex justify-center items-center text-gray-500 py-8">
+            <i class="pi pi-info-circle mr-2"></i>
+            <h1>No users</h1>
+          </div>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table>
+</div>

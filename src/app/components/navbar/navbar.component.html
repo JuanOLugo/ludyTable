@@ -1,0 +1,20 @@
+<div class="p-2 bg-blue-500">
+  <div class="text-white" >
+    <div (click)="onChangeStateNavbar()">
+        <i class="pi pi-align-justify cursor-pointer" style="font-size: 23px"></i>
+    </div>
+    <div
+      class="absolute z-10 top-0 transition-all w-full lg:w-auto  -left-[100%]"
+      #globalContent
+    >
+      <app-navbarcontent
+        (stateNavbar)="onChangeStateNavbar()"
+        (itemsEmmiter)="loadDialog($event)"
+      />
+    </div>
+
+    <!--Items dialogs-->
+
+    <div #dialogContainer></div>
+  </div>
+</div>

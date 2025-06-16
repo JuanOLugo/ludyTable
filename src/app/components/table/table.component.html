@@ -1,0 +1,37 @@
+<div
+  class="w-[full] md:w-[w-full] flex flex-col  lg:w-full px-1 lg:px-5 bg-white"
+>
+  <div>
+    <h1 class="text-3xl font-bold my-1 text-blue-500">Users table</h1>
+    <p class="font-light">
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Pariatur,
+      dolorem.
+    </p>
+  </div>
+
+  <div class="mt-1">
+    <h1 class="font-semibold">Search user</h1>
+    <p-floatlabel>
+      <input
+        [pSize]="'small'"
+        id="username"
+        (input)="this.tableComponentService.SearchUserHandler($event)"
+        [value]="this.tableComponentService.SearchUsername"
+        pInputText
+        placeholder="Juan Ojeda"
+        autocomplete="false"
+      />
+
+      <p-button
+        label="Clear"
+        size="small"
+        severity="info"
+        (click)="this.tableComponentService.clearInputSearchUser()"
+        class="ml-1"
+      />
+    </p-floatlabel>
+  </div>
+
+  <app-tablelg/>
+
+</div>

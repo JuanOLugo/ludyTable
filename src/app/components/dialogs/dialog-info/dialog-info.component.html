@@ -1,0 +1,47 @@
+<div class="">
+  <p-dialog 
+  header="Dialog Fullscreen"
+  [modal]="true"
+  [header]="InfoUserAddress ? 'Info user Address' : 'Info user Company'"
+  [baseZIndex]="10000"
+  [modal]="true"
+  [(visible)]="visible"
+ 
+  [closeButtonProps]="{ ariaLabel: 'Close dialog', severity: 'danger'}"
+  [style]="{ width: '25rem' }"
+  (onHide)="OnChangeVisible()"
+>
+  <div class=" p-2 rounded-sm">
+    @if(InfoUserAddress){
+    <h1 class="bg-white p-3 hover:bg-slate-100 transition-all rounded-sm my-1 shadow cursor-default">
+      <label for="" class="font-bold">City:</label> {{ InfoUserAddress.city }}
+    </h1>
+    <h1 class="bg-white p-3 hover:bg-slate-100 transition-all rounded-sm my-1 shadow cursor-default">
+      <label for="" class="font-bold">Street:</label> {{ InfoUserAddress.street }}
+    </h1>
+    <h1 class="bg-white p-3 hover:bg-slate-100 transition-all rounded-sm my-1 shadow cursor-default">
+      <label for="" class="font-bold">Suite:</label> {{ InfoUserAddress.suite }}
+    </h1>
+
+    }@else{
+    <div class="text-black">
+      <h1 class=" px-1 text-xl rounded-sm my-1  font-bold">
+        {{ InfoUserCompany?.name }}
+      </h1>
+      <h1 class=" px-1 rounded-sm my-1">{{ InfoUserCompany?.bs }}</h1>
+      <h1 class=" px-1 rounded-sm my-1">
+       {{ InfoUserCompany?.catchPhrase}}
+      </h1>
+    </div>
+    }
+
+    <button
+      (click)="manualDialogClose()"
+      class="bg-red-500 px-2 py-1 my-1 rounded-sm text-white cursor-pointer"
+    >
+      Cerrar
+    </button>
+  </div>
+</p-dialog>
+
+</div>
